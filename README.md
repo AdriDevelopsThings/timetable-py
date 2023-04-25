@@ -25,7 +25,7 @@ options:
 
 ## Write timetable files
 A timetable file is a [TOML](https://toml.io/en/) file with a `trains` list. Every `trains` item should be look like like this:
-```toml
+```
 [[trains]]
 name = "RB 20"
 via = ["Weimar, "Naumburg", "Leipzig"] # it will be possible to filter for via stops
