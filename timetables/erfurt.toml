@@ -1,0 +1,125 @@
+
+# - trains in the direction of weimar
+# - - trains in the direction of naumburg
+[[trains]]
+name = "RB 20"
+via = ["Weimar", "Naumburg", "Leipzig"]
+departure = ["00:01", "01:01"]
+color = "#24589B"
+
+[[trains]]
+name = "RE 16"
+via = ["Weimar", "Naumburg", "Halle"]
+departure = ["00:38"]
+color = "#4496D3"
+
+[[trains]]
+name = "RE 17"
+via = ["Weimar", "Naumburg"]
+departure = ["01:38"]
+color = "#50B0BF"
+
+# - - trains in the direction of jena
+[[trains]]
+name = "RE 1"
+via = ["Weimar", "Jena", "Gera", "Glauchau"]
+departure = ["01:50"]
+color = "#DB4948"
+
+[[trains]]
+name = "RE 3"
+via = ["Weimar", "Jena", "Gera", "Altenburg/Greiz"]
+departure = ["00:50"]
+color = "#E16F43"
+
+[[trains]]
+name = "RB 21"
+via = ["Weimar", "Jena", "Gera"]
+departure = ["01:17"]
+color = "#972B27"
+
+# verstarker RE 3
+[[trains]]
+name = "RE 3 (V)"
+via = ["Weimar", "Jena"]
+departure = ["00:19"]
+color = "#E16F43"
+
+# - trains in the direction of Neudietendorf
+# - - trains in the direction of Gotha
+[[trains]]
+name = "RB 20"
+via = ["Neudietendorf", "Gotha", "Eisenach"]
+departure = ["00:00", "01:05"]
+color = "#24589B"
+
+[[trains]]
+name = "RE 1"
+via = ["Neudietendorf", "Gotha", "Bad Langensalza", "Leinefelde", "Heilbad Heiligenstadt", "Göttingen"]
+departure = ["00:09"]
+color = "#DB4948"
+
+# - - trains in the direction of Arnstadt
+[[trains]]
+name = "RE 7"
+via = ["Neudietendorf", "Arnstadt", "Suhl", "Würzburg"]
+departure = ["01:35"]
+color = "#804B26"
+
+[[trains]]
+name = "RB 23"
+via = ["Neudietendorf", "Arnstadt", "Saalfeld"]
+departure = ["00:38", "01:38"]
+color = "#64296C"
+
+[[trains]]
+name = "RB 46"
+via = ["Neudietendorf", "Arnstadt", "Ilmenau"]
+departure = ["00:38", "01:38"]
+color = "#64296C"
+
+[[trains]]
+name = "RB 44"
+via = ["Neudietendorf", "Arnstadt", "Suhl", "Meiningen"]
+departure = ["00:05"]
+color = "#A9963F"
+
+# - trains in the direction of Erfurt Nord
+# - - trains in the direction of Bad Langensalza
+[[trains]]
+name = "RB 52"
+via = ["Erfurt Nord", "Bad Langensalza", "Leinefelde"]
+departure = ["01:07"]
+color = "#CC3631"
+
+[[trains]]
+name = "RE 2"
+via = ["Bad Langensalza", "Leinefelde", "Heilbad Heiligenstadt", "Kassel-Wilhelmshöhe"]
+departure = ["00:33"]
+color = "#A02D32"
+
+# - - trains in the direction of Nordhausen
+[[trains]]
+name = "RE 55"
+via = ["Erfurt Nord", "Nordhausen"]
+departure = ["00:02"]
+color = "#5160A7"
+
+[[trains]]
+name = "RE 56"
+via = ["Erfurt Nord", "Nordhausen"]
+departure = ["01:02"]
+color = "#527ABA"
+
+# - trains in the direction of Erfurt Ost
+[[trains]]
+name = "RE 10"
+via = ["Stotternheim", "Sömmerda", "Artern", "Sangerhausen", "Magdeburg"]
+departure = ["01:10"]
+color = "#569958"
+
+[[trains]]
+name = "RB 59"
+via = ["Erfurt Ost", "Stotternheim", "Sömmerda", "Artern", "Sangershausen"]
+departure = ["00:09"]
+color = "#8BBD53"
