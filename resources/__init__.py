@@ -67,7 +67,7 @@ def main():
 
     plt.eventplot(
         [train["departure"] for train in trains],
-        colors=[train["color"] for train in trains] if all([train["color"] for train in trains]) else None,
+        colors=[train["color"] for train in trains] if all(["color" in train for train in trains]) else None,
         linelengths=0.2,
         linewidths=10,
     )
