@@ -31,6 +31,7 @@ parser.add_argument(
     type=str,
     help="Overwrite the timetable for iris by another station name (e.g. use 'FF' instead of 'frankfurt' because 'frankfurt' is FFT)",
 )
+parser.add_argument("-m", "--merge", action="store_true", help="Merge all trains in one line")
 parser.add_argument(
     "-o",
     "--output",
@@ -139,10 +140,9 @@ def main():
 
     fig, ax = plt.subplots()
     plt.yticks(range(len(trains)), [train["name"] for train in trains])
-
     plt.eventplot(
-        [train["departure"] for train in trains],
-        colors=[train["color"] if "color" in train else "b" for train in trains],
+        [d for train in trains for d in train["departure"]] if args.merge else [train["departure"] for train in trains],
+        colors=[train["color"] if "color" in train else "b" for train in trains] if not args.merge else None,
         linelengths=0.2,
         linewidths=10,
     )
