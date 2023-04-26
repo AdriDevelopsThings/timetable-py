@@ -41,6 +41,4 @@ def get_timetable(eva: str, date: date, hour: int):
         return []
     if type(xml["timetable"]["s"]) == dict:
         xml["timetable"]["s"] = [xml["timetable"]["s"]]
-    return [
-        get_train_from_xml(train) for train in xml["timetable"]["s"]
-    ]
+    return [get_train_from_xml(train) for train in xml["timetable"]["s"]]
