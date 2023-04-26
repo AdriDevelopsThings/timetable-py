@@ -36,6 +36,9 @@ def get_timetable(eva: str, date: date, hour: int):
     ).text
     if not text:
         return []
+    xml = xmltodict.parse(text)
+    if "timetable" not in xml or not xml["timetable"]:
+        return []
     return [
-        get_train_from_xml(train) for train in xmltodict.parse(text)["timetable"]["s"]
+        get_train_from_xml(train) for train in xml["timetable"]["s"]
     ]
