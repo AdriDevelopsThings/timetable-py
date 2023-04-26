@@ -34,6 +34,8 @@ def get_timetable(eva: str, date: date, hour: int):
     text = requests.get(
         f"https://iris.noncd.db.de/iris-tts/timetable/plan/{eva}/{date.strftime('%y%m%d')}/{hour:02}"
     ).text
+    if not text:
+        return []
     return [
         get_train_from_xml(train) for train in xmltodict.parse(text)["timetable"]["s"]
     ]

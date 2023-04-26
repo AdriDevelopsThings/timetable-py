@@ -26,6 +26,12 @@ parser.add_argument(
 )
 parser.add_argument("via", type=str, action="append", help="Filter for via stops")
 parser.add_argument(
+    "-s",
+    "--station",
+    type=str,
+    help="Overwrite the timetable for iris by another station name (e.g. use 'FF' instead of 'frankfurt' because 'frankfurt' is FFT)",
+)
+parser.add_argument(
     "-o",
     "--output",
     type=str,
@@ -77,7 +83,7 @@ def main():
         f, t = args.iris.split("-")
         hours = range(int(f), int(t))
         departures = []
-        eva = get_station_eva(args.timetable)
+        eva = get_station_eva(args.station if args.station else args.timetable)
         for hour in hours:
             departures.extend(get_timetable(eva, datetime.now().date(), hour))
         trains_ungrouped = [
@@ -85,6 +91,7 @@ def main():
                 "name": train["category"] + " " + train["departure"]["line"],
                 "departure": [train["departure"]["time"]],
                 "via": train["departure"]["stops"],
+                "line": train["departure"]["line"],
             }
             for train in filter(
                 lambda train: "departure" in train and "line" in train["departure"],
@@ -105,15 +112,24 @@ def main():
     trains = filter_via(trains, args.via)
     trains = sorted(trains, key=lambda train: train["name"].split(" ")[0])
     trains = sorted(
-        trains, key=lambda train: int(train["name"].split(" ")[1]), reverse=True
+        trains,
+        key=lambda train: train["line"]
+        if "line" in train
+        else int(train["name"].split(" ")[1]),
+        reverse=True,
     )
 
     colors_path = join(COLORS_DIRECTORY, args.timetable.lower() + ".toml")
     if exists(colors_path):
         colors = toml.load(colors_path)
         for train in trains:
-            if train["name"] in colors:
-                train["color"] = colors[train["name"]]
+            for color_name, color in colors.items():
+                if "color" not in train and (
+                    train["name"].replace(" ", "") in color_name.replace(" ", "")
+                    or color_name.replace(" ", "") in train["name"].replace(" ", "")
+                ):
+                    train["color"] = color
+                    break
     not_colored = list(filter(lambda train: "color" not in train, trains))
     if not_colored:
         print(
@@ -126,9 +142,7 @@ def main():
 
     plt.eventplot(
         [train["departure"] for train in trains],
-        colors=[train["color"] for train in trains]
-        if all(["color" in train for train in trains])
-        else None,
+        colors=[train["color"] if "color" in train else "b" for train in trains],
         linelengths=0.2,
         linewidths=10,
     )
